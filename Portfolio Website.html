@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homepage</title>
+  <style>
+    /* --- General Page Styles --- */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding-top: 140px;
+      background: #f4f6fa;
+      min-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* --- Header Styles --- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 120px;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      z-index: 1000;
+      min-width: 1200px;
+    }
+
+    /* Logo styling */
+    .logo {
+      width: 140px;
+      min-width: 140px;
+      max-width: 140px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Main title styling */
+    .main-title {
+      flex: 1 1 auto;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #222;
+      letter-spacing: 1px;
+      margin: 0 40px;
+    }
+
+    /* --- Navigation Menu Styles --- */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 18px; /* More space between items */
+      justify-content: flex-end;
+      background-color: #ffffff;
+      padding: 10px 32px;
+      box-sizing: border-box;
+      border-radius: 12px;
+      margin-right: 24px;
+      flex-wrap: wrap;
+    }
+
+    /* Navigation links and button styles */
+    .nav-menu a, .nav-menu button {
+      font-size: 17px;
+      color: #333;
+      text-decoration: none;
+      background: none;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .nav-menu a:hover, .nav-menu button:hover {
+      background: #e3e8f0;
+      color: #0078d4;
+    }
+    .nav-menu span {
+      color: #bbb;
+      font-size: 20px;
+      user-select: none;
+    }
+
+    /* --- Dropdown Styles --- */
+    .dropdown {
+      display: inline-block;
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 220px;
+      box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.13);
+      z-index: 1;
+      left: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e3e8f0;
+    }
+
+    .dropdown-content a {
+      color: #222;
+      padding: 12px 20px;
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f4f6fa;
+      color: #0078d4;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown > a {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* --- Title Box Styles --- */
+    .title-box {
+      margin-top: 40px;
+      padding: 32px 0;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e3e8f0;
+      width: 420px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #222;
+      letter-spacing: 1px;
+    }
+
+    /* --- Intro Box Styles --- */
+    .intro-box {
+      margin-top: 30px;
+      padding: 36px 48px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e3e8f0;
+      width: 820px;
+      text-align: center;
+      font-size: 1.18rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* --- Image Placeholder Styles --- */
+    .image-placeholder {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border: 1px solid #e3e8f0;
+      padding: 40px 48px 32px 48px; /* More padding for space */
+      width: 820px; /* Match intro-box width */
+      box-sizing: border-box;
+    }
+    .image-placeholder img {
+      width: 260px;
+      height: 260px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+      border-radius: 16px;
+      background: #eee;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .image-placeholder .caption {
+      margin-top: 28px;
+      max-width: 700px;
+      text-align: center;
+      color: #333;
+      font-size: 1.18rem;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      padding: 0 12px;
+    }
+    .image-placeholder .caption strong {
+      font-size: 1.22rem;
+      color: #0078d4;
+      display: block;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    /* --- Responsive Styles --- */
+    @media (max-width: 900px) {
+      .title-box, .image-placeholder, .intro-box { width: 98vw; min-width: 0; }
+      .intro-box { padding: 24px 6vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with logo, title, and navigation menu -->
+  <div class="header">
+    <div class="logo">
+      <img src="Assets/Logo.png" alt="Logo" width="100" height="100">
+    </div>
+    <div class="main-title">Main Page</div>
+    <div class="nav-menu">
+      <!-- Navigation links and dropdowns -->
+      <a href="Portfolio Website.html">Home</a>
+      <span>|</span>
+      <div class="dropdown">
+        <a href="Introduction.html">Introduction &#9662;</a>
+        <div class="dropdown-content">
+          <a href="about.html">About Me</a>
+          <a href="goals.html">Goals</a>
+          <a href="skills.html">Skills</a>
+        </div>
+      </div>
+      <span>|</span>
+      <div class="dropdown">
+        <a href="Units.html">Units &#9662;</a>
+        <div class="dropdown-content">
+          <a href="OnlineWorld.html">Unit 1: Online World</a>
+          <a href="TechnologySystems.html">Unit 2: Technology Systems</a>
+          <a href="Spreadsheets.html">Unit 9: Spreadsheets</a>
+          <a href="SoftwareDevelopment.html">Unit 12: Software Development</a>
+          <a href="Database.html">Unit 10: Database</a>
+          <a href="DigitalPortfolio.html">Unit 3: Digital Portfolio</a>
+        </div>
+      </div>
+      <span>|</span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Main welcome title box -->
+  <div class="title-box">Welcome to my portfolio site</div>
+
+  <!-- Introductory text box -->
+  <div class="intro-box">
+    In this website you will be able to learn more about me, my goals, the skills I've acquired overtime, what I did during my IT course and many other things about me.
+  </div>
+
+  <!-- Placeholder for image and description with arrows -->
+  <div class="image-placeholder" id="imagePlaceholder">
+    <button id="prevImg" style="background:none;border:none;cursor:pointer;font-size:2.2rem;position:absolute;left:20px;top:50%;transform:translateY(-50%);color:#bbb;" aria-label="Previous Image">&#8592;</button>
+    <img id="showcaseImg" src="Assets/placeholder.png" alt="Placeholder Image">
+    <button id="nextImg" style="background:none;border:none;cursor:pointer;font-size:2.2rem;position:absolute;right:20px;top:50%;transform:translateY(-50%);color:#bbb;" aria-label="Next Image">&#8594;</button>
+    <div class="caption" id="showcaseCaption">
+      <strong>Image Title</strong>
+      <p>This is a placeholder for your image. You can add a longer description here to explain what the image is about, and the text will have more space and better readability.</p>
+    </div>
+  </div>
+
+  <script>
+    // Array of images and captions
+    const images = [
+      {
+        src: "Assets/placeholder.png",
+        title: "Image Title",
+        desc: "This is a placeholder for your image. You can add a longer description here to explain what the image is about, and the text will have more space and better readability."
+      },
+      {
+        src: "Assets/another-image.png",
+        title: "Second Image",
+        desc: "This is the second image. You can describe what this picture is about here."
+      },
+      {
+        src: "Assets/third-image.png",
+        title: "Third Image",
+        desc: "This is the third image. Add any explanation you want for this one."
+      }
+    ];
+
+    let currentImg = 0;
+
+    // Update the image and caption
+    function updateShowcase() {
+      document.getElementById('showcaseImg').src = images[currentImg].src;
+      document.getElementById('showcaseImg').alt = images[currentImg].title;
+      document.getElementById('showcaseCaption').innerHTML =
+        `<strong>${images[currentImg].title}</strong><p>${images[currentImg].desc}</p>`;
+    }
+
+    // Event listeners for arrows
+    document.getElementById('prevImg').onclick = function() {
+      currentImg = (currentImg - 1 + images.length) % images.length;
+      updateShowcase();
+    };
+    document.getElementById('nextImg').onclick = function() {
+      currentImg = (currentImg + 1) % images.length;
+      updateShowcase();
+    };
+
+    // Optional: Hide arrows if only one image
+    if (images.length <= 1) {
+      document.getElementById('prevImg').style.display = 'none';
+      document.getElementById('nextImg').style.display = 'none';
+    }
+
+    // Position arrows absolutely inside the placeholder
+    document.getElementById('imagePlaceholder').style.position = 'relative';
+
+    // Initialize
+    updateShowcase();
+  </script>
+</body>
+</html>
